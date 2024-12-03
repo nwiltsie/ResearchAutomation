@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "plotter"
+dynamic = ["version"]
+dependencies = [
+    "matplotlib",
+    "watchdog",
+]
+requires-python = ">=3.10"
+
+authors = [
+    {name = "Nicholas Wiltsie", email = "nwiltsie@mednet.ucla.edu"},
+]
+maintainers = [
+    {name = "Nicholas Wiltsie", email = "nwiltsie@mednet.ucla.edu"},
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License (GPL)",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Development Status :: 3 - Alpha",
+    "Natural Language :: English"
+]
+
+[project.scripts]
+repocrawler = "plotter:__main__.main"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "plotter/_version.py"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+env_list =
+    py3.10
+    py3.12
+
+[testenv]
+deps = pytest
+commands = pytest test --doctest-modules --junitxml=junit/test-results.xml
+"""
