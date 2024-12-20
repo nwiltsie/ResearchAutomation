@@ -7,7 +7,7 @@ In this directory, create a virtual environment and install the required package
 ```console
 $ python3 -m venv doitvenv
 $ . doitvenv/bin/activate
-(doitvenv) $ pip install doit
+(doitvenv) $ pip install -r requirements.txt
 ```
 
 ## Running

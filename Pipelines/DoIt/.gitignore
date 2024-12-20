@@ -1,2 +1,2 @@
-doitvenv/
+*venv/
 .doit.db.db
