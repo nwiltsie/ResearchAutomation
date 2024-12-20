@@ -1,0 +1,6 @@
+*.pptx
+*.docx
+
+# Whitelist the template
+!template.pptx
+*venv/
