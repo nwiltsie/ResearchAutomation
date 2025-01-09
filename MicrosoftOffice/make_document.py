@@ -3,7 +3,10 @@
 
 import argparse
 import csv
+import datetime
+import getpass
 import random
+import socket
 from pathlib import Path
 from io import BytesIO
 from typing import Optional
@@ -58,6 +61,10 @@ def create_word_document(csv_file: Path, outname: Optional[str] = None):
 
     # Add a title
     doc.add_heading("Demonstration of python-docx Features", level=1)
+
+    doc.add_paragraph(
+        f"Created by {getpass.getuser()} on {socket.gethostname()} at {datetime.datetime.now()}"
+    )
 
     # Add a paragraph with different formatting
     para = doc.add_paragraph("This is a paragraph with some ")
