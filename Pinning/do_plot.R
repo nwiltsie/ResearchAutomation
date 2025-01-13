@@ -1,3 +1,10 @@
+png(
+    paste0("../", as.character(packageVersion("ggplot2")), ".png"),
+    width = 1200,
+    height = 800,
+    res = 200
+)
+
 library(ggplot2)
 
 # Create a simple dataset
@@ -18,8 +25,3 @@ ggplot(data, aes(x)) +
     color = "Function"
   ) +
   theme_minimal()
-
-ggsave(paste0(
-    as.character(packageVersion("ggplot2")),
-    ".png"
-))
