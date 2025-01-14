@@ -2,6 +2,9 @@ name: Check enrollment
 
 on:
   workflow_dispatch:
+  schedule:
+    # Runs every 3 hours (at an off-peak minute during the hour)
+    - cron: "27 */3 * * *"
 
 jobs:
   selenium-tests:
