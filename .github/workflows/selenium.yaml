@@ -3,9 +3,6 @@ name: Selenium Tests
 on:
   workflow_dispatch:
 
-permissions:
-  variables: write
-
 jobs:
   selenium-tests:
     runs-on: ubuntu-latest
@@ -45,7 +42,7 @@ jobs:
       - name: Confirm changed
         if: ${{ vars.SEATS_LEFT != env.NEW_SEATS }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.REPO_PAT }}
           OWNER: ${{ github.repository_owner }}
           REPO: ${{ github.event.repository.name }}
         run: |
