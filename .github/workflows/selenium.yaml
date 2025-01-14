@@ -3,6 +3,9 @@ name: Selenium Tests
 on:
   workflow_dispatch:
 
+permissions:
+  variables: write
+
 jobs:
   selenium-tests:
     runs-on: ubuntu-latest
