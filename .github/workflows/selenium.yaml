@@ -28,18 +28,30 @@ jobs:
         working-directory: Enrollment
         run: |
           if [ -f ./output/result.txt ]; then
-            echo "RESULT=$(cat ./output/result.txt)" >> "$GITHUB_ENV"
+            echo "NEW_SEATS=$(cat ./output/result.txt)" >> "$GITHUB_ENV"
           else
             echo "Result file not found!"
             exit 1
           fi
 
-      # Step 4: Compare result with the GitHub variable
-      - name: Compare and update variable
-        id: compare
+      - name: Confirm unchanged
+        if: ${{ vars.SEATS_LEFT == env.NEW_SEATS }}
         run: |
-          echo "Current value: ${{ vars.SEATS_LEFT }}"
-          echo "Updated value: $RESULT"
+          echo "Unchanged: ${{ vars.SEATS_LEFT }} / $NEW_SEATS"
+
+      - name: Confirm changed
+        if: ${{ vars.SEATS_LEFT != env.NEW_SEATS }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          gh api \
+            --method PATCH \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "/repos/$OWNER/$REPO/actions/variables/SEATS_LEFT" \
+            -f "name=SEATS_LEFT" -f "value=$NEW_SEATS"
 
       - name: Tear down Docker Compose
         if: always()
