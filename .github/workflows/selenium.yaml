@@ -1,0 +1,48 @@
+name: Selenium Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  selenium-tests:
+    runs-on: ubuntu-latest
+
+    environment: Testing
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Compose
+        working-directory: Enrollment
+        run: |
+          docker-compose --build
+
+      - name: Run Selenium tests
+        working-directory: Enrollment
+        timeout-minutes: 2
+        run: |
+          docker-compose up --abort-on-container-exit --exit-code-from tester
+
+      - name: Read result from file
+        id: read_result
+        working-directory: Enrollment
+        run: |
+          if [ -f ./output/result.txt ]; then
+            echo "RESULT=$(cat ./output/result.txt)" >> "$GITHUB_ENV"
+          else
+            echo "Result file not found!"
+            exit 1
+          fi
+
+      # Step 4: Compare result with the GitHub variable
+      - name: Compare and update variable
+        id: compare
+        run: |
+          echo "Current value: ${{ vars.MY_VAR }}"
+          echo "Updated value: $RESULT"
+
+      - name: Tear down Docker Compose
+        if: always()
+        run: |
+          docker-compose down

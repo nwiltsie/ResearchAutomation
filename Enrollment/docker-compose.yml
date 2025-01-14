@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  selenium:
+    image: selenium/standalone-firefox:133.0-20250101
+    container_name: selenium-server
+    ports:
+      - "4444:4444"
+    healthcheck:
+      test: ["CMD", "/opt/bin/check-grid.sh"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  tester:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      selenium:
+        condition: service_healthy
+    environment:
+      - SELENIUM_SERVER_URL=http://selenium:4444/wd/hub
+    volumes:
+      - ./output:/app/output
