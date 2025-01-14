@@ -7,8 +7,6 @@ jobs:
   selenium-tests:
     runs-on: ubuntu-latest
 
-    environment: Testing
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,6 +15,7 @@ jobs:
         working-directory: Enrollment
         run: |
           docker compose build
+          docker compose pull
 
       - name: Run Selenium tests
         working-directory: Enrollment
@@ -39,10 +38,11 @@ jobs:
       - name: Compare and update variable
         id: compare
         run: |
-          echo "Current value: ${{ vars.MY_VAR }}"
+          echo "Current value: ${{ vars.SEATS_LEFT }}"
           echo "Updated value: $RESULT"
 
       - name: Tear down Docker Compose
         if: always()
+        working-directory: Enrollment
         run: |
           docker compose down
