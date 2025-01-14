@@ -19,7 +19,9 @@ if __name__ == "__main__":
 
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
-        "--outlook", action="store_true", help="Open email draft in Outlook"
+        "--outlook",
+        action="store_true",
+        help="Open email draft in Outlook (macOS only)",
     )
     group.add_argument(
         "--gmail", action="store_true", help="Open email draft in Gmail compose window"

@@ -19,14 +19,13 @@ options:
   --cc CC [CC ...]
   --bcc BCC [BCC ...]
   --body BODY          Email body
-  --outlook            Open email draft in Outlook
+  --outlook            Open email draft in Outlook (macOS only)
   --gmail              Open email draft in Gmail compose window
 ```
 
 ## Compose multiple emails from a CSV
 
 ```console
-$ ./batch_email.py -h
 usage: batch_email.py [-h] (--outlook | --gmail) datafile
 
 positional arguments:
@@ -34,9 +33,6 @@ positional arguments:
 
 options:
   -h, --help  show this help message and exit
-  --outlook   Open email draft in Outlook
+  --outlook   Open email draft in Outlook (macOS only)
   --gmail     Open email draft in Gmail compose window
 ```
-
-
-
