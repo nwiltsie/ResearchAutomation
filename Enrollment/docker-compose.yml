@@ -1,5 +1,4 @@
-version: '3.8'
-
+---
 services:
   selenium:
     image: selenium/standalone-firefox:133.0-20250101
@@ -22,5 +21,6 @@ services:
         condition: service_healthy
     environment:
       - SELENIUM_SERVER_URL=http://selenium:4444/wd/hub
+      - FORM_ID
     volumes:
       - ./output:/app/output

@@ -12,6 +12,7 @@ from selenium.common.exceptions import TimeoutException
 
 
 class ElementValueIsNot:
+    """Selenium conditional to wait until element text is changed."""
     def __init__(self, locator, value):
         self.locator = locator
         self.value = value
@@ -27,7 +28,7 @@ def get_available_seats() -> str:
 
     options = webdriver.FirefoxOptions()
     with webdriver.Remote(command_executor=selenium_url, options=options) as driver:
-        driver.get("https://form.jotform.com/243407365523152")
+        driver.get(f"https://form.jotform.com/{os.environ['FORM_ID']}")
 
         iframe_id = "customFieldFrame_15"
 
@@ -38,7 +39,7 @@ def get_available_seats() -> str:
 
         locator = (
             By.XPATH,
-            "//li[label[@for='inperson-classroom']]/span[@class='items-left']"
+            "//li[label[@for='inperson-classroom']]/span[@class='items-left']",
         )
 
         try:
@@ -47,6 +48,7 @@ def get_available_seats() -> str:
         except TimeoutException:
             print("Text did not change within the timeout period.")
             raise
+
 
 if __name__ == "__main__":
     result = get_available_seats()

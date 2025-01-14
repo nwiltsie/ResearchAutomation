@@ -1,4 +1,4 @@
-name: Selenium Tests
+name: Check enrollment
 
 on:
   workflow_dispatch:
@@ -20,6 +20,8 @@ jobs:
       - name: Run Selenium tests
         working-directory: Enrollment
         timeout-minutes: 2
+        env:
+          FORM_ID: ${{ vars.FORM_ID }}
         run: |
           docker compose up --abort-on-container-exit --exit-code-from tester
 
