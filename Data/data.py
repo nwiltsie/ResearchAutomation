@@ -45,7 +45,7 @@ HTML_TEMPLATE = Template("""\
 
 def decode():
     """Decode the data."""
-    data = b"\x44\x6F\x67\x3F"
+    data = b"\x44\x6f\x67\x3f"
 
     red, green, blue, alpha = struct.unpack("4b", data)
 
@@ -56,16 +56,15 @@ def decode():
     print("RGBA:   ", red, green, blue, alpha)
 
     rgb_color = f"rgb({red},{green},{blue})"
-    rgba_color = f"rgba({red},{green},{blue},{alpha/0xFF:0.2f})"
+    rgba_color = f"rgba({red},{green},{blue},{alpha / 0xFF:0.2f})"
 
     with tempfile.TemporaryDirectory() as tempdir:
         html_file = Path(tempdir, "color.html")
 
-        print(HTML_TEMPLATE.substitute(rgb_color=rgb_color, rgba_color=rgba_color))
-
         html_file.write_text(
             HTML_TEMPLATE.substitute(rgb_color=rgb_color, rgba_color=rgba_color),
-            encoding="utf-8")
+            encoding="utf-8",
+        )
 
         # There's a race condition between the browser opening this file and
         # the file being deleted. Gloss over it by waiting for 1 second (this
