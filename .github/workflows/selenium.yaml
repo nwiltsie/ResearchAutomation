@@ -39,34 +39,27 @@ jobs:
         run: |
           echo "Unchanged: ${{ vars.SEATS_LEFT }} / $NEW_SEATS"
 
-      - name: Confirm changed
+      - name: Send email
+        if: ${{ vars.SEATS_LEFT != env.NEW_SEATS }}
+        uses: dawidd6/action-send-mail@v3.12.0
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.GMAIL_ADDRESS }}
+          password: ${{ secrets.GMAIL_PASSWORD }}
+          subject: Seats Changed
+          to: ${{ secrets.NOTIFY_EMAIL }}
+          from: GitHub Actions
+          body: "${{ vars.SEATS_LEFT }} to ${{ env.NEW_SEATS }}"
+
+      - name: Update variable
         if: ${{ vars.SEATS_LEFT != env.NEW_SEATS }}
         env:
           GH_TOKEN: ${{ secrets.REPO_PAT }}
           OWNER: ${{ github.repository_owner }}
           REPO: ${{ github.event.repository.name }}
         run: |
-          sudo apt-get update
-          sudo apt-get install -y msmtp
-
-          {
-              echo "account gmail"
-              echo "host smtp.gmail.com"
-              echo "port 587"
-              echo "auth on"
-              echo "user ${{ secrets.GMAIL_ADDRESS }}"
-              echo "password ${{ secrets.GMAIL_PASSWORD }}"
-              echo "tls on"
-              echo "tls_trust_file /etc/ssl/certs/ca-certificates.crt"
-              echo "logfile ~/.msmtp.log"
-              echo "account default : gmail"
-          } >> ~/.msmtprc
-
-          chmod 600 ~/.msmtprc
-
-          echo -e "To: ${{ secrets.NOTIFY_EMAIL }}\nSubject: Seats Changed\n\n${{ vars.SEATS_LEFT }} to $NEW_SEATS" \
-              | msmtp --debug --from=default -t
-
           gh api \
               --method PATCH \
               -H "Accept: application/vnd.github+json" \
