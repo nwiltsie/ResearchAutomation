@@ -1,5 +1,6 @@
 *.pptx
 *.docx
+*.xlsx
 
 # Whitelist the template
 !template.pptx

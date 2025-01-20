@@ -13,7 +13,6 @@ $ . officevenv/bin/activate
 ## Generate Slides
 
 ```console
-# Basic usage
 $ ./make_powerpoint.py data.csv --template template.pptx --outname slides
 Saved presentation as slides.pptx
 ```
@@ -23,3 +22,11 @@ Saved presentation as slides.pptx
 ```console
 $ ./make_document.py data.csv --outname mydoc
 Saved document as mydoc.docx
+```
+
+## Generate Spreadsheet
+
+```console
+$ ./make_spreadsheet.py
+Saved spreadsheets as openpyxl_demo.xlsx and openpyxl_demo_updated.xlsx
+```
