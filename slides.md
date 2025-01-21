@@ -145,6 +145,12 @@ zoom: 0.6
 </v-clicks>
 
 ---
+layout: image
+backgroundSize: contain
+image: /Enrollment.png
+---
+
+---
 
 ## Example 1
 
