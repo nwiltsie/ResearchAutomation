@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Batch-prepare emails with student scores."""
+import argparse
 import csv
 import textwrap
 
