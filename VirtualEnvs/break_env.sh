@@ -29,6 +29,7 @@ color_echo green "Initializing conda..."
 
 # This might need to be adjusted for other configurations
 if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+    # shellcheck source=/dev/null
     . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
 fi
 
