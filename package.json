@@ -1,0 +1,19 @@
+{
+  "name": "researchautomation",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^51.0.1",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "slidev-theme-eloc": "^1.0.2",
+    "slidev-theme-geist": "^0.8.1",
+    "slidev-theme-neversink": "^0.3.6",
+    "vue": "^3.5.13"
+  }
+}
