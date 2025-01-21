@@ -1,6 +1,5 @@
 # Configuration file for MegaLinter
 ---
-
 APPLY_FIXES: none
 
 ENABLE:
@@ -25,3 +24,5 @@ FILEIO_REPORTER: false
 FILTER_REGEX_EXCLUDE: (Slides.*/|renv/)
 
 PRINT_ALPACA: false
+
+BASH_SHFMT_ARGUMENTS: "-i 4"
