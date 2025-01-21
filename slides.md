@@ -1,7 +1,7 @@
 ---
 theme: eloc
 background: https://cover.sli.dev
-title: Welcome to Slidev
+title: Accelerating Research with Automation
 class: text-center
 drawings:
   persist: false
