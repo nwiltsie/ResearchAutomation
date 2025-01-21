@@ -12,7 +12,7 @@ highlighter: shiki
 
 # Accelerating Research with Automation
 
-Nick Wiltsie, January 2025
+Nick Wiltsie, January 2025 (not 2024)
 
 ---
 
