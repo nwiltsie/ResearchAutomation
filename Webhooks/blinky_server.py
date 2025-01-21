@@ -10,8 +10,8 @@ from pathlib import Path
 
 import requests
 
-from gunicorn.app.base import BaseApplication
 from flask import Flask, request, jsonify, current_app
+from gunicorn.app.base import BaseApplication
 
 from blinky import send_color, send_cylon, guess_blinkyport, named_color
 

@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 """Batch-prepare emails with student scores."""
-
-import argparse
 import csv
 import textwrap
+
+from email.headerregistry import Address
+from email.message import EmailMessage
 from operator import itemgetter
+from pathlib import Path
 from statistics import mean
 from typing import Iterator
-
-from email.message import EmailMessage
-from email.headerregistry import Address
-from pathlib import Path
 
 from emaillib import open_gmail_url, open_outlook
 
