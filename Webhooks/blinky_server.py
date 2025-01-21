@@ -2,6 +2,7 @@
 """Webserver to display a POSTed color on the blinkytape."""
 
 import argparse
+import os
 import subprocess
 import time
 from contextlib import contextmanager, ExitStack
@@ -9,8 +10,8 @@ from pathlib import Path
 
 import requests
 
-from gunicorn.app.base import BaseApplication
 from flask import Flask, request, jsonify, current_app
+from gunicorn.app.base import BaseApplication
 
 from blinky import send_color, send_cylon, guess_blinkyport, named_color
 
@@ -18,11 +19,20 @@ from blinky import send_color, send_cylon, guess_blinkyport, named_color
 @contextmanager
 def scoped_ngrok_url(server_port: int):
     """Run ngrok in the background as a context manager."""
+    pid = os.getpid()
     process = None
 
     try:
         process = subprocess.Popen(
-            ["ngrok", "http", str(server_port), "--name", "blinky"],
+            [
+                "ngrok",
+                "http",
+                str(server_port),
+                "--url",
+                "pro-oarfish-patient.ngrok-free.app",
+                "--name",
+                "blinky",
+            ],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
         )
@@ -49,7 +59,8 @@ def scoped_ngrok_url(server_port: int):
         yield public_url
 
     finally:
-        if process:
+        # Only tear down the process from the original process
+        if process and pid == os.getpid():
             print(f"Terminating ngrok process with PID: {process.pid}")
             process.terminate()
             process.wait()
@@ -141,6 +152,36 @@ def create_app(blinky_port: Path):
                 },
             }
 
+            if port := current_app.config.get("BLINKY_PORT", None):
+                send_color(port, rgb_triplet)
+
+            return jsonify(response), 200
+        except ValueError as e:
+            return jsonify({"error": str(e)}), 400
+        except Exception:
+            return jsonify({"error": "An unexpected error occurred."}), 500
+
+    @app.route("/color/<colorname>", methods=["GET"])
+    def get_color(colorname):
+        """Handle GET requests for a color name."""
+        try:
+            if not colorname:
+                raise ValueError("Color name must not be empty.")
+
+            # Strip and convert the color name to RGB
+            color_name = colorname.strip()
+            rgb_triplet = named_color(color_name)
+
+            response = {
+                "color": color_name,
+                "rgb": {
+                    "red": rgb_triplet.red,
+                    "green": rgb_triplet.green,
+                    "blue": rgb_triplet.blue,
+                },
+            }
+
+            # Access the `port` value from the app config
             if port := current_app.config.get("BLINKY_PORT", None):
                 send_color(port, rgb_triplet)
 

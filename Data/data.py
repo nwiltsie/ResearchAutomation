@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """Demonstrate that raw data can be interpreted in many different ways."""
 
-import time
 import struct
 import tempfile
+import time
 import webbrowser
 
-from string import Template
-
 from pathlib import Path
+from string import Template
 
 
 HTML_TEMPLATE = Template("""\
