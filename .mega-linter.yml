@@ -27,4 +27,6 @@ FILTER_REGEX_EXCLUDE: (Slides.*/|renv/)
 
 PRINT_ALPACA: false
 
-BASH_SHFMT_ARGUMENTS: "-i 4"
+# Ignore problems following sourced files
+# https://www.shellcheck.net/wiki/SC1091
+BASH_SHELLCHECK_ARGUMENTS: "--exclude=SC1091"
