@@ -24,8 +24,6 @@ Nick Wiltsie, January 2025
 
 ---
 
-## Recap of yesterday
-
 ![Alt](/Directed_Acyclic_Graph.svg)
 
 ---
