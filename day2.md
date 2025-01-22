@@ -27,7 +27,7 @@ Nick Wiltsie, January 2025
 ## Day Two
 
 - Overview of YAML and JSON syntax
-- Practical exercise in GitHub Actions
+- Practical exercise in GitHub Actions to publish a personal website
 
 ---
 
@@ -499,3 +499,5 @@ layout: two-cols
 ---
 
 ## Practical Exercise
+
+Create a personal website, hosted on GitHub pages, that regularly updates itself with your latest publications.
