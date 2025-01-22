@@ -12,7 +12,7 @@ highlighter: shiki
 
 # Accelerating Research with Automation
 
-Nick Wiltsie, January 2025 (not 2024)
+Nick Wiltsie, January 2025
 
 ---
 
@@ -29,9 +29,9 @@ Nick Wiltsie, January 2025 (not 2024)
 
 ## What is an Automation?
 
-- A system, tool, or workflow <!-- .element: class="fragment" -->
-- that performs tasks or processes automatically <!-- .element: class="fragment" -->
-- with minimal or no human intervention <!-- .element: class="fragment" -->
+- A system, tool, or workflow
+- that performs tasks or processes automatically
+- with minimal or no human intervention
 
 ---
 
@@ -170,7 +170,7 @@ Generating emails
 
 ## Example 2
 
-BlinkyTape!
+[BlinkyTape!](<>)
 
 ---
 zoom: 0.7
