@@ -27,7 +27,9 @@ Nick Wiltsie, January 2025
 ## Day Two
 
 - Overview of YAML and JSON syntax
-- Practical exercise in
+- Practical exercise in GitHub Actions
+
+---
 
 ## YAML Syntax Overview
 
