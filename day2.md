@@ -396,3 +396,106 @@ YAML:
 - More human-readable
 
 ---
+
+## CSV Syntax Overview
+
+Comma-Separated Values for Tabular Data
+
+---
+
+## What is CSV?
+
+- **CSV**: Comma-Separated Values
+- Simple text format for tabular data
+- Commonly used for:
+  - Data exchange between systems
+  - Spreadsheets and databases
+  - Import/export in tools like Excel, pandas, etc.
+
+---
+
+## Key Features
+
+- Plain text format
+- **Rows** represent records
+- **Columns** separated by commas
+- File extension: `.csv`
+
+---
+
+## Basic Structure
+
+A simple CSV file:
+
+```csv
+Name,Age,Location
+John Doe,30,Springfield
+Jane Smith,25,Shelbyville
+```
+
+First row: Column headers
+
+Subsequent rows: Data records
+
+Values separated by commas `,`
+
+---
+
+## Standardization
+
+No Standard for Data Types
+
+- All values are text by default
+- Interpretation of numbers, dates, etc., depends on the application
+
+```csv
+Name,Age,IsStudent,Date
+John,30,false,2024-01-01
+Jane,25,true,2023-02-17
+```
+
+---
+
+## Missing Values
+
+Leave cells blank for missing values:
+
+```csv
+Name,Age,Location
+John Doe,30,
+Jane Smith,,Shelbyville
+```
+
+---
+layout: two-cols
+---
+
+## Strengths of CSV
+
+- Easy to read and write
+- Widely supported across tools
+- Compact representation for small datasets
+
+::right::
+
+## Limitations of CSV
+
+- No built-in support for:
+  - Hierarchical data
+  - Data types (everything is text)
+  - Metadata
+- Limited handling of:
+  - Special characters
+  - Non-standard delimiters
+
+---
+
+## CSV vs JSON vs YAML
+
+- CSV: Simple and compact, best for tabular data
+- JSON: Structured, supports nested data
+- YAML: Readable, supports comments and flexible syntax
+
+---
+
+## Practical Exercise
