@@ -92,3 +92,13 @@ zoom: 0.8
 ---
 
 # Let's solve some problems!
+
+---
+
+## Please review this course!
+
+![Alt](/image002.png)
+
+[Direct link](https://docs.google.com/forms/d/e/1FAIpQLSfCPFDVcZFna2BAcue8Ta-mY9-Oelw80XMQHQ_YBxDcE74W4g/viewform)
+
+---
