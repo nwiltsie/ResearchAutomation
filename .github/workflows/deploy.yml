@@ -37,6 +37,7 @@ jobs:
           nr build --base /${{github.event.repository.name}}/day1 --out dist/day1 day1.md
           nr build --base /${{github.event.repository.name}}/day2 --out dist/day2 day2.md
           nr build --base /${{github.event.repository.name}}/day3 --out dist/day3 day3.md
+          nr build --base /${{github.event.repository.name}}/dayx --out dist/dayx dayx.md
           cp site_index.html dist/index.html
 
       - name: Setup Pages
